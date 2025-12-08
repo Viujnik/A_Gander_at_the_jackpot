@@ -10,7 +10,7 @@ class CasinoBalance(UserDict):
         """Переопределение классического метода для вывода информации."""
         old_balance = self.get(key, 0)
         super().__setitem__(key, value)
-        print(f"Наш Игрок {key} обновил свой баланс с {old_balance} на {value} ганс")
+        print(f"💰 Наш Игрок {key} обновил свой баланс с {old_balance} на {value} ганс.")
 
 
 class PlayerCollection(UserList):
@@ -28,14 +28,6 @@ class GooseCollection(UserList):
     def get_honk_geese(self) -> list[HonkGoose]:
         """Получение всех крикливых гусей казино"""
         return [g for g in self if isinstance(g, HonkGoose)]
-
-
-class GooseBalance(UserDict):
-    """Словарь для хранения балансов гусей казино."""
-
-    def __setitem__(self, key:str, value:int) -> None:
-        super().__setitem__(key, value)
-        print(f"Наш Гусь {key} навсегда одолжил {value} гансов")
 
 
 class ChipCollection(UserList):

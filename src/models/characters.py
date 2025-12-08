@@ -30,7 +30,7 @@ class Player:
     def _chips_to_bet(self) -> tuple[list[Chip], int] | None:
         """Случайный выбор фишек для ставки игрока, если они у него есть."""
         if not self.chips:
-            print("Твоя жопа гола, бро. Приходи, когда будет кэш.")
+            print("🦆 Твоя жопа гола, бро. Приходи, когда будет кэш.")
             return None
 
         chips_count = random.randint(1, len(self.chips))
@@ -51,7 +51,7 @@ class Player:
             self.chips.extend(new_chips)
         else:
             self.chips.append(new_chips)
-        self.balance += self.set_balance()
+        self.balance = self.set_balance()
 
 
 class Goose:
@@ -76,7 +76,8 @@ class Goose:
                 remaining -= chip
 
         self.stolen_chips.extend(stolen_chips)
-        print(f"Гусь {self.name} стырил {stolen_amount} ганс у {name}.")
+
+        print(f"💸 Гусь {self.name} стырил {stolen_amount} ганс у {name}.")
         return stolen_chips
 
     def __add__(self, other: "Goose") -> "GooseFlock":
@@ -89,7 +90,7 @@ class WarGoose(Goose):
         """Случайный урон для атаки игрока военным гусём."""
         damage = random.randint(self.audacity, 20)
         print(
-            f"{name}, дай-ка разукрасить твою физиономию, азартный ты ублюдок!. Теперь твоё личико на {damage} ударов из 100.")
+            f"⚔️ {name}, дай-ка разукрасить твою физиономию, азартный ты ублюдок!. Теперь твоё личико на {damage} ударов из 100.")
         return damage
 
 
@@ -97,7 +98,7 @@ class HonkGoose(Goose):
     def honk(self, name: str) -> int:
         """Случайный уровень крика для оглушения игрока крикливым гусём."""
         honk_level = random.randint(self.audacity, 20)
-        print(f"Гусь {self.name} крикнул со громкостью в {honk_level} Гусебелл! И оглушил {name}.")
+        print(f"📢 Гусь {self.name} крикнул со громкостью в {honk_level} Гусебелл! И оглушил {name}.")
         return honk_level
 
 
@@ -107,7 +108,7 @@ class GooseFlock(Goose):
         super().__init__(geese)
         self.geese = geese
         self.size = len(geese)
-        self.name = f"Стая из гусей: {[goose.name for goose in self.geese]}"
+        self.name = f"🦆 Стая из гусей: {[goose.name for goose in self.geese]}"
 
     def collab_attack(self, name: str) -> int:
         """Объединенная атака стаи гусей со случайным уроном."""

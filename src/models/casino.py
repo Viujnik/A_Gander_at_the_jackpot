@@ -82,7 +82,7 @@ class Casino:
             print(f"⚔️ Зарегистрирован военный гусь: {goose.name}; Наглость: {goose.audacity})")
         else:
             goose = HonkGoose(random.choice(names))
-            print(f"📢 Зарегистрирован крикливый гусь: {goose.name}; Наглость {goose.audacity})")
+            print(f"📢 Зарегистрирован крикливый гусь: {goose.name}; Наглость: {goose.audacity})")
 
         self.geese.append(goose)
         return goose
@@ -102,10 +102,11 @@ class Casino:
                 self.geese.append(simulate.geese_collab(self.geese))
 
 
-gander_casino = Casino()
-gander_casino.player_register()
-gander_casino.goose_register("war")
-gander_casino.player_register()
-gander_casino.goose_register("honk")
-for _ in range(10):
-    gander_casino.simulation_action()
+def run_simulation() -> None:
+    gander_casino = Casino()
+    for _ in range(100):
+        gander_casino.player_register()
+        gander_casino.goose_register("war")
+        gander_casino.goose_register("honk")
+    for _ in range(1000):
+        gander_casino.simulation_action()
