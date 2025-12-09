@@ -127,24 +127,3 @@ class Chip:
     def __init__(self, value: int = None) -> None:
         """Инициализация наминала и цвета фишки."""
         self.value = value if value is not None else random.choice([1, 5, 10, 25, 50, 100])
-        self.color = self._get_color()
-
-    def _get_color(self) -> str:
-        """Цвет фишки на основе её наминала"""
-        colors = {
-            1: "белый",
-            5: "красный",
-            10: "синий",
-            25: "зелёный",
-            50: "чёрный",
-            100: "фиолетовый"
-        }
-        return colors.get(self.value, "мнимый")
-
-    def __add__(self, other: "Chip") -> "Chip":
-        """Сложение фишки в новую"""
-        return Chip(self.value + other.value)
-
-    def __str__(self) -> str:
-        """Вывод цвета и наминала фишки"""
-        return f"Фишка({self.color}, {self.value} ганс)"

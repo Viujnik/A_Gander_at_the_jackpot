@@ -1,6 +1,6 @@
 import random
 
-from src.models.characters import WarGoose, GooseFlock, HonkGoose, Player, Goose
+from src.models.characters import WarGoose, GooseFlock, HonkGoose, Player
 from src.models.collections_models import PlayerCollection, GooseCollection
 
 
@@ -117,8 +117,12 @@ class Actions:
         if not check_player:
             casino_players.remove(player)
 
-    def geese_collab(self, casino_geese: GooseCollection) -> "GooseFlock":
+    def geese_collab(self, casino_geese: GooseCollection) -> GooseFlock | None:
         """Логика объединения гусей в стаю для шага симуляции."""
-        goose1 = random.choice(casino_geese)
-        goose2 = random.choice(casino_geese)
-        return GooseFlock([goose1, goose2])
+        if len(casino_geese) >= 2:
+            for _ in range(random.randint(0, min(4, len(casino_geese)))):
+                goose1 = random.choice(casino_geese)
+                goose2 = random.choice(casino_geese)
+                return GooseFlock([goose1, goose2])
+        print("У казино пока нет зарегистрированных гусей")
+        return None

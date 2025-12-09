@@ -64,7 +64,7 @@ class Casino:
                 self.chips_balance.append(Chip(chip))
 
         total_sum = self.chips_balance.total_balance()
-        print(f"🏦Банк казино: {total_sum} ганс.")
+        print(f"🏦 Банк казино: {total_sum} ганс.")
 
     def player_register(self) -> "Player":
         """Регистрирует нового случайного игрока."""
@@ -102,11 +102,11 @@ class Casino:
                 self.geese.append(simulate.geese_collab(self.geese))
 
 
-def run_simulation() -> None:
+def run_simulation(n, m) -> None:
     gander_casino = Casino()
-    for _ in range(100):
+    for _ in range(n):
         gander_casino.player_register()
         gander_casino.goose_register("war")
         gander_casino.goose_register("honk")
-    for _ in range(1000):
+    for _ in range(m):
         gander_casino.simulation_action()

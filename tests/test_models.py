@@ -102,6 +102,3 @@ def test_collab_attack(mocker, war_goose, honk_goose):
 def test_chip(chip_50, chip_100):
     """Проверка свойств фишек."""
     assert chip_50.value == 50
-    assert chip_50._get_color() == "чёрный"
-    new_chip = chip_50 + chip_50
-    assert new_chip.value == chip_100.value
