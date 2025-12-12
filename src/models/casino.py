@@ -102,11 +102,11 @@ class Casino:
                 self.geese.append(simulate.geese_collab(self.geese))
 
 
-def run_simulation(n, m) -> None:
+def run_simulation(user_list) -> None:
     gander_casino = Casino()
-    for _ in range(n):
+    for _ in range(user_list[0]):
         gander_casino.player_register()
         gander_casino.goose_register("war")
         gander_casino.goose_register("honk")
-    for _ in range(m):
+    for _ in range(user_list[1]):
         gander_casino.simulation_action()
