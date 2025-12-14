@@ -4,7 +4,7 @@ from src.models.characters import WarGoose, HonkGoose, Chip
 
 
 class CasinoBalance(UserDict):
-    """Словарь для хранения балансов игроков в казино"""
+    """Словарь для хранения балансов игроков в казино."""
 
     def __setitem__(self, key: str, value: int) -> None:
         """Переопределение классического метода для вывода информации."""
@@ -14,8 +14,11 @@ class CasinoBalance(UserDict):
 
 
 class PlayerCollection(UserList):
-    """Список игроков казино"""
+    """Список игроков казино."""
     pass
+
+class WhoreCollection(UserList):
+    """Список дев казино."""
 
 
 class GooseCollection(UserList):

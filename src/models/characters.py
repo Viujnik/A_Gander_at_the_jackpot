@@ -67,7 +67,7 @@ class Goose:
         """Случайный выбор суммы для кражи у игрока."""
         stolen_amount = random.randint(10, 300)
         stolen_chips = []
-        chips = [100, 50, 25, 10, 5, 1]
+        chips = [1, 5, 10, 25, 50, 100]
         remaining = stolen_amount
 
         for chip in chips:
@@ -83,6 +83,34 @@ class Goose:
     def __add__(self, other: "Goose") -> "GooseFlock":
         """Сбор гусей в стаю."""
         return GooseFlock([self, other])
+
+
+class Whore:
+    def __init__(self, name: str, eye_color: str, hair_color: str) -> None:
+        self.name = name
+        self.eye_color = eye_color
+        self.hair_color = hair_color
+        self.sexuality = random.choice(list(range(1, 20)) + [999])
+
+    def give_pleasure(self, name: str) -> list[int]:
+        if self.sexuality == 999:
+            return [-1]
+        base_prise = self.sexuality + 5
+        if self.hair_color == "блонд" and self.eye_color in ("зелёные", "голубые"):
+            print(
+                f"👩🏼 У девы {self.name} волосы цвета блонд и {self.eye_color} глаза. Она достойна большего.\n Время с ней обойдётся в {base_prise + 5} ганс.")
+            base_prise += 5
+        time_price = []
+        chips = [1, 5, 10, 25, 50, 100]
+        remaining = base_prise
+
+        for chip in chips:
+            while remaining >= chip:
+                time_price.append(Chip(chip))
+                remaining -= chip
+        print(f"👩🏻‍🦰 Дева {self.name} провела время с {name}.")
+        return time_price
+
 
 
 class WarGoose(Goose):

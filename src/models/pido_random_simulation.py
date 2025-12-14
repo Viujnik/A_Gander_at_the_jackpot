@@ -1,7 +1,8 @@
 import random
 
+from src.models import casino
 from src.models.characters import WarGoose, GooseFlock, HonkGoose, Player
-from src.models.collections_models import PlayerCollection, GooseCollection
+from src.models.collections_models import PlayerCollection, GooseCollection, WhoreCollection
 
 
 def player_check(player: "Player") -> bool:
@@ -21,7 +22,7 @@ class Actions:
     def __init__(self) -> None:
         """Инициализация списка действий симуляции."""
         self.actions_list = ["players_bet", "attack_of_geese",
-                             "goose_try_still_money", "goose_collab"]
+                             "goose_try_still_money", "goose_collab", "whore_time"]
 
     def player_bet(self, casino, casino_players: PlayerCollection) -> None:
         """Логика для ставки игрока - случайный исход ставки, выплата фишек/потеря фишек."""
@@ -119,10 +120,22 @@ class Actions:
 
     def geese_collab(self, casino_geese: GooseCollection) -> GooseFlock | None:
         """Логика объединения гусей в стаю для шага симуляции."""
-        if len(casino_geese) >= 2:
-            for _ in range(random.randint(0, min(4, len(casino_geese)))):
-                goose1 = random.choice(casino_geese)
-                goose2 = random.choice(casino_geese)
-                return GooseFlock([goose1, goose2])
+        needed_geese = casino_geese.get_war_geese() + casino_geese.get_honk_geese()
+        len_geese = len(needed_geese)
+        if len_geese >= 2:
+            geese = []
+            for _ in range(random.randint(2, min(4, len_geese))):
+                goose = random.choice(needed_geese)
+                geese.append(goose)
+            return GooseFlock(geese)
         print("У казино пока нет зарегистрированных гусей")
         return None
+
+    def whore_time(self, casino_whores: WhoreCollection, casino_players: PlayerCollection) -> None:
+        whore = random.choice(casino_whores)
+        player = random.choice(casino_players)
+        time_price = whore.give_pleasure(player.name)
+        player.remove_chips(time_price)
+        check_player = player_check(player)
+        if not check_player:
+            casino_players.remove(player)
