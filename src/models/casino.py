@@ -129,6 +129,18 @@ class Casino:
 
         self.geese.append(goose)
         return goose
+    def info(self):
+        if self.geese:
+            print("Балансы гусей:")
+            for goose in self.geese:
+                print(f"🦆   {goose.name}: {sum(chip.value for chip in goose.stolen_chips)}")
+        if self.players:
+            print("Балансы игроков:")
+            for player in self.players:
+                print(f"👤   {player.name}: {player.balance}")
+        print("Балансы дев")
+        for whore in self.whores:
+            print(f"👩🏻‍🦰   {whore.name}: {whore.balance}")
 
     def simulation_action(self) -> None:
         """Случайное действие для симуляции"""
@@ -156,3 +168,6 @@ def run_simulation(user_list) -> None:
         gander_casino.goose_register("honk")
     for _ in range(user_list[1]):
         gander_casino.simulation_action()
+    user_choise = input("Вы хотите вывести сводку балансов?(\'да\' для подтверждения, любая другая последовательность для отказа): ")
+    if user_choise == "да":
+        gander_casino.info()

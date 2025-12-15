@@ -87,7 +87,7 @@ def test_goose_flock(war_goose, honk_goose):
     assert war_goose in flock.geese and honk_goose in flock.geese
     assert flock.size == 2
     assert flock.geese == [war_goose, honk_goose]
-    assert flock.name == "🦆 Стая из гусей: [\'Тестовый Воин\', \'Тестовый Крикун\']"
+    assert flock.name == "Стая из гусей: [\'Тестовый Воин\', \'Тестовый Крикун\']"
 
 
 def test_collab_attack(mocker, war_goose, honk_goose):

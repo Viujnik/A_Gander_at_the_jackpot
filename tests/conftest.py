@@ -1,7 +1,7 @@
 import pytest
 import random
 from src.models.characters import Player, Chip, WarGoose, HonkGoose
-from src.models.collections_models import PlayerCollection, ChipCollection
+from src.models.collections_models import PlayerCollection, ChipCollection, GooseCollection
 from src.models.casino import Casino
 
 
@@ -43,7 +43,7 @@ def empty_casino():
     """Создаёт пустое казино для тестов."""
     casino = Casino()
     casino.players = PlayerCollection()
-    casino.geese = []
+    casino.geese = GooseCollection()
     casino.chips_balance = ChipCollection()
     return casino
 

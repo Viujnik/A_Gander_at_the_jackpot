@@ -88,6 +88,7 @@ class Goose:
 class Whore:
     def __init__(self, name: str, eye_color: str, hair_color: str) -> None:
         self.name = name
+        self.balance = 0
         self.eye_color = eye_color
         self.hair_color = hair_color
         self.sexuality = random.choice(list(range(1, 20)) + [999])
@@ -109,6 +110,7 @@ class Whore:
                 time_price.append(Chip(chip))
                 remaining -= chip
         print(f"👩🏻‍🦰 Дева {self.name} провела время с {name}.")
+        self.balance += sum(chip.value for chip in time_price)
         return time_price
 
 
@@ -136,7 +138,7 @@ class GooseFlock(Goose):
         super().__init__(geese)
         self.geese = geese
         self.size = len(geese)
-        self.name = f"🦆 Стая из гусей: {[goose.name for goose in self.geese]}"
+        self.name = f"Стая из гусей: {[goose.name for goose in self.geese]}"
 
     def collab_attack(self, name: str) -> int:
         """Объединенная атака стаи гусей со случайным уроном."""
